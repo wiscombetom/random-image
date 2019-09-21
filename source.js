@@ -3,11 +3,9 @@ window.onload = () => {
     var descriptionWrapper = document.querySelector(".description-output");
     
     var generate = () => {
-        console.log(`button clicked`);
         var randomNumber = Math.floor(Math.random() * data.length);
-        console.log(`${data[randomNumber].path}`);
-        console.log(`${data[randomNumber].description}`);
         imageWrapper.innerHTML = `<img src="./images/${data[randomNumber].path}"></img>`;
+        randomNumber = Math.floor(Math.random() * data.length);
         descriptionWrapper.innerHTML = `<p>${data[randomNumber].description}</p>`;
     }
         
