@@ -23,6 +23,14 @@ p, img, button {
 .display-output {
     height: 90vh;
 }
+.display-left{
+    width:45vw;
+    float:left;
+}
+.display-right{
+    width:45vw;
+    float:right;
+}
 
 .image-output img {
     height: 70vh;
