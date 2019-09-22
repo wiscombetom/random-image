@@ -1,96 +1,27 @@
-/* * {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-body {
-    background-color: lightskyblue;
-    font-family: Helvetica;
-    text-align: center;
-    vertical-align: center;
-}
-
-div {
-    display: block;
-}
-
-p, img, button {
-    border: 5px solid darkblue;
-    border-radius: 20px;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.display-output {
-    height: 90vh;
-    width: 95vh;
-}
-
-.display-left{
-    width:45vw;
-    height: 70vh;
-    display: inline-block;
-    float:left;
-}
-
-.display-right{
-    width:45vw;
-    height: 70vh;
-    display: inline-block;
-    float:right;
-}
-
-.image-output img {
-    max-height: 70vh;
-    max-width: 45vw;
-}
-
-.description-output p {
-    font-size: 3rem;
-    color: darkblue;
-    font-weight: 600;
-    height: 20vh;
-    width: 100%;
-}
-
-.generate {
-    font-size: 3rem;
-    background-color: darkblue;
-    color: lightskyblue;
-    font-weight: 300;
-    transition-duration: 200ms;
-    cursor: pointer;
-}
-
-.generate:hover {
-    background-color: lightskyblue;
-    color: darkblue;
-    font-weight: 600;
-    transition-duration: 200ms;
-} */
-@keyframes leftSlide{
-    0%{
-        opacity:0;
+@keyframes leftSlide {
+    0% {
+        opacity: 0;
         transform: translateX(-100%);
     }
-    60%{
+    60% {
         transform: translateX(10%);
     }
-    100%{
+    100% {
         transform: translateX(0%);
-        opacity:1;
+        opacity: 1;
     }
 }
-@keyframes rightSlide{
-    0%{
-        opacity:0;
+
+@keyframes rightSlide {
+    0% {
+        opacity: 0;
         transform: translateX(100%);
     }
-    60%{
+    60% {
         transform: translateX(-10%);
     }
-    100%{
-        opacity:1;
+    100% {
+        opacity: 1;
         transform: translateX(0%);
     }
 }
@@ -104,12 +35,10 @@ body,
 }
 
 .grid-container * {
-    /* border: 1px solid red; */
     position: relative;
 }
 
 .grid-container *:after {
-    /* content:attr(class); */
     position: absolute;
     top: 0;
     left: 0;
@@ -142,29 +71,28 @@ body,
 
 .image-left {
     grid-area: image-left;
-    border-right: 5px solid darkblue;
 }
 
 .image-right {
     grid-area: image-right;
-    border-left: 5px solid darkblue;
 }
 
 .description-left {
     grid-area: description-left;
-    border-right: 5px solid darkblue;
 }
 
 .description-right {
     grid-area: description-right;
-    border-left: 5px solid darkblue;
 }
-.leftSlide{
+
+.leftSlide {
     animation: 1.8s ease-in-out 0s 1 leftSlide;
 }
-.rightSlide{
+
+.rightSlide {
     animation: 1.8s ease-in-out 0s 1 rightSlide;
 }
+
 .button-output {
     grid-area: button-output;
 }
@@ -179,7 +107,6 @@ p {
     color: darkblue;
     font-weight: 600;
     height: 10vh;
-    /* width: 100%; */
 }
 
 .generate {
