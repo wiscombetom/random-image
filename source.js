@@ -18,10 +18,10 @@ window.onload = () => {
         setTimeout(()=>{
             imageWrapper.offsetWidth = imageWrapper.offsetWidth;
             descriptionWrapper.offsetWidth = descriptionWrapper.offsetWidth;
-
+            imageWrapper.classList.add(`${leftOrRight}Slide`);
+            descriptionWrapper.classList.add(`${leftOrRight}Slide`);
+    
         },10);
-        imageWrapper.classList.add(`${leftOrRight}Slide`)
-        descriptionWrapper.classList.add(`${leftOrRight}Slide`)
 
         //reset globals
         isLeft = !isLeft;
