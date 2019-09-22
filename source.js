@@ -5,8 +5,8 @@ window.onload = () => {
         let randomNumber = Math.floor(Math.random()*pickList.length);
         let imageWrapper = document.querySelector(`.image-output.${isLeft ? "left" : "right"}`);
         let descriptionWrapper = document.querySelector(`.description-output.${isLeft ? "left" : "right"}`);
-        imageWrapper.innerHTML = `<img src="./images/${data[randomNumber].path}"></img>`;
-        descriptionWrapper.innerHTML = `<p>${data[randomNumber].description}</p>`;
+        imageWrapper.innerHTML = `<img src="./images/${pickList[randomNumber].path}"></img>`;
+        descriptionWrapper.innerHTML = `<p>${pickList[randomNumber].description}</p>`;
         
         //reset globals
         isLeft = !isLeft;
