@@ -1,3 +1,32 @@
+@keyframes leftSlide {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(10%);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity:1;
+    }
+  }
+
+  @keyframes rightSlide{
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(-10%);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity:1;
+    }
+  }
 * {
     margin-top: 0;
     margin-bottom: 0;
@@ -26,6 +55,12 @@ p, img, button {
 .display-left{
     width:45vw;
     float:left;
+}
+.leftSlide{
+    animation: 0.8s ease-in-out 0s 1 leftSlide;
+}
+.rightSlide{
+    animation: 0.8s ease-in-out 0s 1 rightSlide;
 }
 .display-right{
     width:45vw;
