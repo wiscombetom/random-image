@@ -1,4 +1,4 @@
-* {
+/* * {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -7,6 +7,7 @@ body {
     background-color: lightskyblue;
     font-family: Helvetica;
     text-align: center;
+    vertical-align: center;
 }
 
 div {
@@ -22,19 +23,26 @@ p, img, button {
 
 .display-output {
     height: 90vh;
+    width: 95vh;
 }
+
 .display-left{
     width:45vw;
+    height: 70vh;
+    display: inline-block;
     float:left;
 }
+
 .display-right{
     width:45vw;
+    height: 70vh;
+    display: inline-block;
     float:right;
 }
 
 .image-output img {
-    height: 70vh;
-    max-width: 90vh;
+    max-height: 70vh;
+    max-width: 45vw;
 }
 
 .description-output p {
@@ -42,6 +50,7 @@ p, img, button {
     color: darkblue;
     font-weight: 600;
     height: 20vh;
+    width: 100%;
 }
 
 .generate {
@@ -57,5 +66,104 @@ p, img, button {
     background-color: lightskyblue;
     color: darkblue;
     font-weight: 600;
+    transition-duration: 200ms;
+} */
+
+html,
+body,
+.grid-container {
+    height: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.grid-container * {
+    /* border: 1px solid red; */
+    position: relative;
+}
+
+.grid-container *:after {
+    /* content:attr(class); */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.grid-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 0.1fr 1.9fr 1.9fr 0.1fr;
+    grid-template-rows: 0.1fr 2.5fr 0.25fr 0.1fr;
+    grid-template-areas: ". . . ." ". display-output display-output ." ". button-output button-output ." ". . . .";
+}
+
+.display-output {
+    height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5fr 0.25fr;
+    grid-template-areas: "image-left image-right" "description-left description-right";
+    grid-area: display-output;
+}
+
+.image {
+    height: 70vh;
+}
+
+.description {
+    height: 20vh;
+}
+
+.image-left {
+    grid-area: image-left;
+    border-right: 5px solid darkblue;
+}
+
+.image-right {
+    grid-area: image-right;
+    border-left: 5px solid darkblue;
+}
+
+.description-left {
+    grid-area: description-left;
+    border-right: 5px solid darkblue;
+}
+
+.description-right {
+    grid-area: description-right;
+    border-left: 5px solid darkblue;
+}
+
+.button-output {
+    grid-area: button-output;
+}
+
+img {
+    max-height: 70vh;
+    max-width: 45vw;
+}
+
+p {
+    font-size: 3rem;
+    color: darkblue;
+    font-weight: 600;
+    height: 10vh;
+    /* width: 100%; */
+}
+
+.generate {
+    width: 80%;
+    height: 80%;
+    font-size: 1.5rem;
+    background-color: darkblue;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transform: scale(1);
+    transition-duration: 200ms;
+}
+
+.generate:hover {
+    transform: scale(1.25);
     transition-duration: 200ms;
 }
