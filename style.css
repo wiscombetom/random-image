@@ -68,6 +68,32 @@ p, img, button {
     font-weight: 600;
     transition-duration: 200ms;
 } */
+@keyframes leftSlide{
+    0%{
+        opacity:0;
+        transform: translateX(-100%);
+    }
+    60%{
+        transform: translateX(10%);
+    }
+    100%{
+        transform: translateX(0%);
+        opacity:1;
+    }
+}
+@keyframes rightSlide{
+    0%{
+        opacity:0;
+        transform: translateX(100%);
+    }
+    60%{
+        transform: translateX(-10%);
+    }
+    100%{
+        opacity:1;
+        transform: translateX(0%);
+    }
+}
 
 html,
 body,
@@ -133,7 +159,12 @@ body,
     grid-area: description-right;
     border-left: 5px solid darkblue;
 }
-
+.leftSlide{
+    animation: 1.8s ease-in-out 0s 1 leftSlide;
+}
+.rightSlide{
+    animation: 1.8s ease-in-out 0s 1 rightSlide;
+}
 .button-output {
     grid-area: button-output;
 }
