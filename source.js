@@ -3,8 +3,9 @@ window.onload = () => {
     var isLeft = true; //start at left
     var pickOne = () => { //pick a picture+text
         let randomNumber = Math.floor(Math.random()*pickList.length);
-        let imageWrapper = document.querySelector(`.image-${isLeft ? "left" : "right"}`);
-        let descriptionWrapper = document.querySelector(`.description-${isLeft ? "left" : "right"}`);
+        let leftOrRight = isLeft ? "left" : "right";
+        let imageWrapper = document.querySelector(`.image-${leftOrRight}`);
+        let descriptionWrapper = document.querySelector(`.description-${leftOrRight}`);
         imageWrapper.innerHTML = `<img src="./images/${pickList[randomNumber].path}"></img>`;
         descriptionWrapper.innerHTML = `<p>${pickList[randomNumber].description}</p>`;
         
