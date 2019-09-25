@@ -1,37 +1,43 @@
 var data = [{
         "id": 0,
         "path": "bcb.jpg",
-        "description": "Bixby Creek Bridge",
-        "pairs": [0, 1, 2, 3, 4, 5]
+        "title": "Bixby Creek Bridge",
+        "description":"Lorem Ipsum Bridge",
+        "tags": ["Lorem Ipsum Bridge"]
     },
     {
         "id": 1,
         "path": "cwb.jpg",
-        "description": "Calm Waters Bridge",
-        "pairs": [0, 1, 2, 3, 4, 5]
+        "title": "Calm Waters Bridge",
+        "description":"Lorem",
+        "tags": ["Lorem"]
     },
     {
         "id": 2,
         "path": "ggb.jpg",
-        "description": "Golden Gate Bridge",
-        "pairs": [0, 1, 2, 3, 4, 5]
+        "title": "Golden Gate Bridge",
+        "description":"Ipsum",
+        "tags": ["Ipsum"]
     },
     {
         "id": 3,
         "path": "rb.jpg",
-        "description": "Regentville Bridge",
-        "pairs": [0, 1, 2, 3, 4, 5]
+        "title": "Regentville Bridge",
+        "description":"Dolor Sit",
+        "tags": ["Dolor", "Sit"]
     },
     {
         "id": 4,
         "path": "scb.jpg",
-        "description": "Sea Cliff Bridge",
-        "pairs": [0, 1, 2, 3, 4, 5]
+        "title": "Sea Cliff Bridge",
+        "description":"Amet Alea Iacta Est",
+        "tags": ["Amet", "Alea", "Iacta", "Est"]
     },
     {
         "id": 5,
         "path": "tb.jpg",
-        "description": "Train Bridge",
-        "pairs": [0, 1, 2, 3, 4, 5]
+        "title": "Train Bridge",
+        "description":"Lorem Amet",
+        "tags": ["Lorem", "Amet"]
     }
 ];
