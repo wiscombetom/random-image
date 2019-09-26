@@ -57,7 +57,7 @@ body,
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1.5fr 0.25fr;
-    grid-template-areas: "image-left image-right" "description-left description-right";
+    grid-template-areas: "image-left image-right" "title-left title-right" "description-left description-right";
     grid-area: display-output;
 }
 
@@ -76,7 +76,12 @@ body,
 .image-right {
     grid-area: image-right;
 }
-
+.title-left{
+    grid-area: title-left;
+}
+.title-right{
+    grid-area:title-right;
+}
 .description-left {
     grid-area: description-left;
 }

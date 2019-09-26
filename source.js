@@ -9,13 +9,16 @@ window.onload = () => {
     var tagRestrictions = [];
 
     var pick = () =>{
+        if(pickList.length === 0){
+            pickList = [...data];
+        }
         let randomNumber = Math.floor(Math.random() * pickList.length);
         let leftOrRight = isLeft ? "left" : "right";
-        
+        console.log(pickList);
         //pick left, no tag restrictions
-        pick.left = pickList[randomNumber];
+        picks.left = pickList[randomNumber];
         pickList.splice(randomNumber,1)
-        tagRestrictions =  pick.left.tags;
+        tagRestrictions =  picks.left.tags;
         
         //pick right, consider tags.
         let rightPickList = [...pickList]
@@ -24,31 +27,42 @@ window.onload = () => {
             let maxTags = newTags.length+tagRestrictions.length;
             let compareTags = newTags.concat(tagRestrictions);
             compareTags = new Set(compareTags)
-            if(a.size!==maxTags){
+            if(compareTags.size!==maxTags){
                 rightPickList.splice(pickCounter,1);
                 pickCounter--;
             }
         }
-
+        console.log("rightpicklist", rightPickList);
+        //if no valid picks left?
         if(rightPickList.length===0){
-            //repopulate?
+            /*start over?? (risks infinite loop is dataset is bad)
+             *Alternative is we repopulate (similar risk to above)
+             *Or we rework the algorithm to prevent pairs of tags from being leftovers, a significantly harder task
+            */
+           console.log("Time to reset");
+            picks = {"left":null, "right":null};
+            tagRestrictions = [];
+            pickList = [...data];
+            console.log("reset ", pickList);
+            generate();
+            return;
         }
         randomNumber = Math.floor(Math.random()*rightPickList.length);
-        pick.right = rightPickList[randomNumber];
-        pickList.splice(pickList.indexOf(pick.right),1);
+        picks.right = rightPickList[randomNumber];
+        pickList.splice(pickList.findIndex((e)=>{e.id===picks.right.id}),1);
         tagRestrictions = [];
 
+        //TODO
+  //      AnimationEffect()
+        setImage(picks.left.id,"left");
+        setImage(picks.right.id,"right");
+        setTitle(picks.left.id,"left");
+        setTitle(picks.right.id,"right");
+        setDescription(picks.left.id,"left");
+        setDescription(picks.right.id,"right");
+  //      AnimationEffect()
 
-        AnimationEffect()
-        setImage()
-        setImage()
-        setTitle()
-        setTitle()
-        setDescription()
-        setDescription()
-        AnimationEffect()
-        
-        picks = {"left":null,"right":null}
+        picks = {"left":null,"right":null};
     }
     /*
     var pickOne = () => { //pick a picture+text
@@ -96,7 +110,15 @@ window.onload = () => {
         let imageWrapper = document.querySelector(`.image-${side}`);
 
         //replace the contents with the image
-        imageWrapper.innerHTML = `<img src="./images/${pickList[index].path}"></img>`;
+        imageWrapper.innerHTML = `<img src="./images/${data[index].path}"></img>`;
+    }
+
+    var setTitle = (index, side) => {
+        //find the element
+        let titleWrapper = document.querySelector(`.title-${side}`);
+
+        //replace the contents with the description
+        titleWrapper.innerHTML = `<p>${data[index].title}</p>`;
     }
 
     var setDescription = (index, side) => {
@@ -104,7 +126,7 @@ window.onload = () => {
         let descriptionWrapper = document.querySelector(`.description-${side}`);
 
         //replace the contents with the description
-        descriptionWrapper.innerHTML = `<p>${pickList[index].description}</p>`;
+        descriptionWrapper.innerHTML = `<p>${data[index].description}</p>`;
     }
 
     var generate = () => {

@@ -3,7 +3,7 @@ var data = [{
         "path": "bcb.jpg",
         "title": "Bixby Creek Bridge",
         "description":"Lorem Ipsum Bridge",
-        "tags": ["Lorem Ipsum Bridge"]
+        "tags": ["Lorem", "Ipsum", "Bridge"]
     },
     {
         "id": 1,
