@@ -111,19 +111,23 @@ body,
 }
 
 .leftSlideIn {
-    animation: 1.25s ease-in-out 0s 1 leftSlideIn;
+    animation: 1.1s ease-in-out 0s 1 forwards leftSlideIn;
+    animation-fill-mode:forwards;
 }
 
 .rightSlideIn {
-    animation: 1.25s ease-in-out 0s 1 rightSlideIn;
+    animation: 1.1s ease-in-out 0s 1 forwards rightSlideIn;
+    animation-fill-mode:forwards;
 }
 
 .leftSlideOut {
-    animation: 1.25s ease-in-out 0s 1 leftSlideOut;
+    animation: 1.1s ease-in-out 0s 1 forwards leftSlideOut;
+    animation-fill-mode:forwards;
 }
 
 .rightSlideOut {
-    animation: 1.25s ease-in-out 0s 1 rightSlideOut;
+    animation: 1.1s ease-in-out 0s 1 forwards rightSlideOut;
+    animation-fill-mode:forwards;
 }
 
 .button-output {

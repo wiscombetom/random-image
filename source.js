@@ -187,6 +187,7 @@ window.onload = () => {
         //set html elements according to what was picked
             setPanel(picks.left.id, "left");
             setPanel(picks.right.id, "right");
+            timer = 1024; //set animation timer after first generate call
 
         //reset picks for next, unless overridden by params
             if(!checkPanel1()){
@@ -214,7 +215,4 @@ window.onload = () => {
     if(checkPanel2()){
         setPanel(panels.panel2,"right");
     }
-
-    //Animation timer for slideIn
-    timer = 1120;
 }
