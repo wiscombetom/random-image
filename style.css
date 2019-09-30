@@ -1,10 +1,10 @@
 @keyframes leftSlideIn {
     0% {
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateX(-25%);
     }
-    60% {
-        transform: translateX(10%);
+    50% {
+        transform: translateX(2.5%);
     }
     100% {
         transform: translateX(0%);
@@ -15,10 +15,10 @@
 @keyframes rightSlideIn {
     0% {
         opacity: 0;
-        transform: translateX(100%);
+        transform: translateX(25%);
     }
-    60% {
-        transform: translateX(-10%);
+    50% {
+        transform: translateX(-2.5%);
     }
     100% {
         opacity: 1;
@@ -28,22 +28,22 @@
 
 @keyframes leftSlideOut {
     0% {}
-    60% {
-        transform: translateX(10%);
+    50% {
+        transform: translateX(2.5%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-25%);
         opacity: 0;
     }
 }
 
 @keyframes rightSlideOut {
     0% {}
-    60% {
-        transform: translateX(-10%);
+    50% {
+        transform: translateX(-2.5%);
     }
     100% {
-        transform: translateX(100%);
+        transform: translateX(25%);
         opacity: 0;
     }
 }
@@ -111,19 +111,19 @@ body,
 }
 
 .leftSlideIn {
-    animation: 1.8s ease-in-out 0s 1 leftSlideIn;
+    animation: 1.25s ease-in-out 0s 1 leftSlideIn;
 }
 
 .rightSlideIn {
-    animation: 1.8s ease-in-out 0s 1 rightSlideIn;
+    animation: 1.25s ease-in-out 0s 1 rightSlideIn;
 }
 
 .leftSlideOut {
-    animation: 1.8s ease-in-out 0s 1 leftSlideOut;
+    animation: 1.25s ease-in-out 0s 1 leftSlideOut;
 }
 
 .rightSlideOut {
-    animation: 1.8s ease-in-out 0s 1 rightSlideOut;
+    animation: 1.25s ease-in-out 0s 1 rightSlideOut;
 }
 
 .button-output {

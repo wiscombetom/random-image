@@ -180,7 +180,7 @@ window.onload = () => {
     button.addEventListener(`click`, generate);
 
     // generate();
-    timer = 1800;
+    timer = 1120;
 
     console.log(panels);
 }
