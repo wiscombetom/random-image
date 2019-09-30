@@ -1,25 +1,113 @@
-const panels = { panel1: -1, panel2: -1 }
+const panels = { panel1: -1, panel2: -1 } //id of the data for each panel
 
 window.onload = () => {
+    //setup for panels
     let s = window.location.search
     let u = new URLSearchParams(s)
 
     panels.panel1 = parseInt(u.get("panel1")) || -1;
     panels.panel2 = parseInt(u.get("panel2")) || -1;
 
-    var pickList = [...data]; //valid picks, initialize as full copy of data
-    //var isLeft = true; //start at left
-
-    //var leftWrapper = document.querySelector('left');
-    //var rightWrapper = document.querySelector('right');
-
-    var picks = { "left": null, "right": null }
+    //for matching process
+    var pickList; 
+    var picks = { "left": null, "right": null } 
     var tagRestrictions = [];
-    var timer = 0;
-    //var leftOrRight = () => {return isLeft ? "left" : "right";}
+    
+    //for animation
+    var timer = 0;//for animations
     var animationTypes = ["SlideIn", "SlideOut"];
 
-    var generate = () => {
+    //panel functions
+    var checkPanel1 = ()=>{
+        return panels.panel1>-1 && panels.panel1<data.length;
+    }
+    var checkPanel2 = ()=>{
+        return panels.panel2>-1 && panels.panel2<data.length;
+    }
+    var setPanel = (id, side)=>{
+        setImage(id, side);
+        setTitle(id, side);
+        setDescription(id, side);
+    } 
+
+    //matching process
+    var resetPickList = ()=>{
+        pickList = [...data]; //reset permissible picks from json
+        if(checkPanel1()){
+            pickList.splice(panels.panel1,1);
+        }
+        let remVal = panels.panel2>panels.panel1 ? panels.panel2-1 : panels.panel2;
+        if(checkPanel2()){
+            pickList.splice(remVal, 1);
+        }
+        console.log("resetting picklist");
+        alert("resetting picklist");
+    }
+    var makePicks = (prevPick, alreadyPicked=false, side="left", checkInfiniteLoop = 0)=>{
+        if(checkInfiniteLoop >= 3){
+            console.log("data is bad, preventing infinite loop.")
+            alert("ERROR INFINITE LOOP, BAD DATA.");
+            return;
+        }
+        let randomNumber;
+        if(!alreadyPicked){ //simple random pick, no tag restrictions
+            if (pickList.length === 0) {
+                resetPickList();
+            }
+            randomNumber = Math.floor(Math.random() * pickList.length);
+            prevPick = pickList[randomNumber];
+            pickList.splice(randomNumber,1);
+            tagRestrictions = prevPick.tags;
+        }
+        let secondPickList = [...pickList];
+        for (let pickCounter = 0; pickCounter < secondPickList.length; pickCounter++) {
+            let newTags = secondPickList[pickCounter].tags;
+            let maxTags = newTags.length + tagRestrictions.length;
+            let compareTags = newTags.concat(tagRestrictions);
+            compareTags = new Set(compareTags);
+            if (compareTags.size !== maxTags) {
+                secondPickList.splice(pickCounter, 1);
+                pickCounter--;
+            }
+        }
+        //if no valid picks left?
+        if (secondPickList.length === 0) {
+            /*start over?? (risks infinite loop is dataset is bad)
+             *Alternative is we repopulate (similar risk to above)
+             *Or we rework the algorithm to prevent pairs of tags from being leftovers, a significantly harder task
+             */
+            console.log("Time to reset");
+            tagRestrictions = [];
+            resetPickList();
+            console.log("reset ", pickList);
+            alert("reshuffling");
+            makePicks(prevPick, alreadyPicked, side, checkInfiniteLoop+1); //reset, but avoid infinite loop
+            return;
+        }
+        randomNumber = Math.floor(Math.random() * secondPickList.length);
+        newPick = secondPickList[randomNumber];
+        if(side==="left"){
+            picks.left = prevPick;
+            picks.right = newPick;
+        }else{
+            picks.right = prevPick;
+            picks.left = newPick;
+        }
+        
+        pickList.splice(pickList.findIndex((e) => {return e.id === newPick.id }), 1);
+        tagRestrictions = [];
+    }
+    var generate = () => { //pick an image. Check if they are not overwritten by URL params
+        if(checkPanel1()&&checkPanel2()){ //2 params, override randomization
+            picks.left = data[panels.panel1];
+            picks.right = data[panels.panel2];
+        }else if(checkPanel1()){
+            makePicks(data[panels.panel1], true, "left");
+        }else if(checkPanel2()){
+            makePicks(data[panels.panel2], true, "right");
+        }else{
+            makePicks(null); 
+            /*
             if (pickList.length === 0) {
                 pickList = [...data];
             }
@@ -44,10 +132,10 @@ window.onload = () => {
             }
             //if no valid picks left?
             if (rightPickList.length === 0) {
-                /*start over?? (risks infinite loop is dataset is bad)
-                 *Alternative is we repopulate (similar risk to above)
-                 *Or we rework the algorithm to prevent pairs of tags from being leftovers, a significantly harder task
-                 */
+                //start over?? (risks infinite loop is dataset is bad)
+                 //Alternative is we repopulate (similar risk to above)
+                 //Or we rework the algorithm to prevent pairs of tags from being leftovers, a significantly harder task
+                 //
                 console.log("Time to reset");
                 picks = { "left": null, "right": null };
                 tagRestrictions = [];
@@ -59,59 +147,21 @@ window.onload = () => {
             randomNumber = Math.floor(Math.random() * rightPickList.length);
             picks.right = rightPickList[randomNumber];
             pickList.splice(pickList.findIndex((e) => { e.id === picks.right.id }), 1);
-            tagRestrictions = [];
-
-            //TODO
-            setImage(picks.left.id, "left");
-            setImage(picks.right.id, "right");
-            setTitle(picks.left.id, "left");
-            setTitle(picks.right.id, "right");
-            setDescription(picks.left.id, "left");
-            setDescription(picks.right.id, "right");
-
-            picks = { "left": null, "right": null };
+            tagRestrictions = [];*/
         }
-        /*
-    var pickOne = () => { //pick a picture+text
-        let randomNumber = Math.floor(Math.random() * pickList.length);
-        let leftOrRight() = isLeft ? "left" : "right";
-        
-        
-        let imageWrapper = document.querySelector(`.image-${leftOrRight()}`);
-        let descriptionWrapper = document.querySelector(`.description-${leftOrRight()}`);
-        imageWrapper.innerHTML = `<img src="./images/${pickList[randomNumber].path}"></img>`;
-        descriptionWrapper.innerHTML = `<p>${pickList[randomNumber].description}</p>`;
-        
-        
-        //animation
+        //set html elements according to what was picked
+            setPanel(picks.left.id, "left");
+            setPanel(picks.right.id, "right");
 
-
-        imageWrapper.classList.remove(`${leftOrRight()}Slide`)
-        descriptionWrapper.classList.remove(`${leftOrRight()}Slide`)
-
-        setTimeout(() => {
-            imageWrapper.offsetWidth = imageWrapper.offsetWidth;
-            descriptionWrapper.offsetWidth = descriptionWrapper.offsetWidth;
-            imageWrapper.classList.add(`${leftOrRight()}Slide`);
-            descriptionWrapper.classList.add(`${leftOrRight()}Slide`);
-
-        }, 10);
-
-        //reset globals
-        isLeft = !isLeft;
-
-        //remove the pick from the pickList
-        pickList.splice(randomNumber, 1);
-
-        //remove the right pick from the pickList
-        // pickList.splice(rightIndex, 1);
-
-        if (pickList.length < 1) {
-            console.log("Presented every image! Repopulating the list...")
-            pickList = [...data];
+        //reset picks for next, unless overridden by params
+            if(!checkPanel1()){
+                picks.left = null;
+            }
+            if(!checkPanel2()){
+                picks.right = null;
+            }
         }
-    }
-*/
+    // panel functions
     var setImage = (index, side) => {
         //find the element
         let imageWrapper = document.querySelector(`.image-${side}`);
@@ -176,10 +226,17 @@ window.onload = () => {
         }, 0);
 
     }
+
+    resetPickList();
     var button = document.querySelector(".generate");
     button.addEventListener(`click`, generate);
 
-    // generate();
+    if(checkPanel1()){
+        setPanel(panels.panel1,"left");
+    }
+    if(checkPanel2()){
+        setPanel(panels.panel2,"right");
+    }
     timer = 1120;
 
     console.log(panels);
