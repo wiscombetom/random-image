@@ -9,10 +9,11 @@ window.onload = () => {
     let s = window.location.search
     let u = new URLSearchParams(s)
 
-    panels.panel1 = parseInt(u.get("panel1")) || -1;
-    panels.panel2 = parseInt(u.get("panel2")) || -1;
-
+    panels.panel1 = parseInt(u.get("panel1")) === 0 ? 0 : parseInt(u.get("panel1")) || -1;
+    panels.panel2 = parseInt(u.get("panel2")) === 0 ? 0 : parseInt(u.get("panel2")) || -1;    
+    
     //for matching process
+    
     var pickList; 
     var picks = { "left": null, "right": null } 
     var tagRestrictions = [];
