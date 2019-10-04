@@ -21,7 +21,6 @@ body {
     height: 92vh;
     display: flex;
     justify-content: space-around;
-    /* place-content: center; */
 }
 
 .container {

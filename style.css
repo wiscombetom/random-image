@@ -48,117 +48,52 @@
     }
 }
 
-* {
-    margin: 0;
-    padding: 0;
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 0.05vmin;
+    word-spacing: 2vmin;
+    font-family: 'Arial Narrow Bold', sans-serif
 }
 
-html,
-body,
-.grid-container {
-    position: relative;
-    width: 100vw;
+body {
     height: 100vh;
-    margin: 0;
-    text-align: center;
-    background-color: #000;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-shadow: 2px 2px 2px #fff, -2px -2px 2px #fff;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+}
+
+.main {
+    height: 92vh;
+    display: flex;
+    justify-content: space-around;
     overflow: hidden;
 }
 
-:root {
-    font-size: 16px;
+.container {
+    max-width: 48vw;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5px;
 }
 
-@media (max-width:1500px) {
-     :root {
-        font-size: 14px;
-    }
+.image {
+    display: flex;
+    place-content: center;
+    max-height: 70vh;
+    box-shadow: 0px 5px 5px #000, 0px -5px 5px #000;
 }
 
-@media (max-width:1000px) and (max-height: 1000px) {
-     :root {
-        font-size: 12px;
-    }
-}
-
-@media (max-width:500px) and (max-height: 500px) {
-     :root {
-        font-size: 10px;
-    }
-}
-
-.grid-container {
-    position: relative;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 50px 1fr 1fr 50px;
-    grid-template-rows: 20px 1fr 50px;
-    grid-template-areas: ". . . ." ". display-output display-output ." ". . . button-output";
-}
-
-.display-output {
-    box-sizing: border-box;
-    position: relative;
-    background-color: #fff;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 2.5fr 1fr 1.5fr;
-    grid-template-areas: "image-left image-right" "title-left title-right" "description-left description-right";
-    grid-area: display-output;
-    overflow: hidden;
-}
-
-.image-left {
-    position: absolute;
-    left: 0%;
-    top: 5%;
-    width: 80%;
-    grid-area: image-left;
-}
-
-.image-right {
-    position: absolute;
-    right: 0%;
-    top: 5%;
-    width: 80%;
-    grid-area: image-right;
-}
-
-.title-left {
-    position: absolute;
-    left: 0%;
-    top: 25%;
-    width: 80%;
-    grid-area: title-left;
-}
-
-.title-right {
-    position: absolute;
-    right: 0%;
-    top: 25%;
-    width: 80%;
-    grid-area: title-right;
-}
-
-.description-left {
-    position: absolute;
-    left: 0%;
-    bottom: 10%;
-    width: 80%;
-    /* height: 90%; */
-    grid-area: description-left;
-}
-
-.description-right {
-    position: absolute;
-    right: 0%;
-    bottom: 10%;
-    width: 80%;
-    /* height: 90%; */
-    grid-area: description-right;
+.footer {
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .leftSlideIn {
@@ -181,55 +116,38 @@ body,
     animation-fill-mode: forwards;
 }
 
-.button-output {
-    grid-area: button-output;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-items: flex-end;
-}
-
 img {
-    max-height: 60vh;
-    max-width: 45vw;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    background: transparent;
 }
 
 h1 {
-    box-sizing: border-box;
-    /* padding: 50px; */
-    position: relative;
-    /* bottom: 50px; */
-    font-size: 2.5rem;
-    color: #000;
-    font-weight: 600;
-}
-
-h2 {
-    font-size: 2rem;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 6vmin;
 }
 
 p {
-    padding: auto;
-    font-size: 1.5rem;
+    width: 100%;
+    padding: 10px 20px;
     color: #aaa;
-    font-weight: 600;
+    font-size: 4vmin;
 }
 
-.generate {
+button {
     width: 50px;
     height: 50px;
-    background-color: transparent;
+    background: transparent;
     color: #ffaa00;
-    font-weight: 600;
-    cursor: pointer;
-    transform: scale(1);
-    transition-duration: 200ms;
+    font-size: 5vmin;
     border: none;
+    outline: none;
 }
 
-.generate:hover {
-    transform: scale(1.25);
-    transition-duration: 200ms;
+button:hover {
     color: #000;
-    background-color: #ffaa00;
+    background: #ffaa00;
+    border-radius: 100%;
 }
