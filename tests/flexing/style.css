@@ -4,6 +4,9 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    letter-spacing: 0.05vmin;
+    word-spacing: 2vmin;
+    font-family: 'Arial Narrow Bold', sans-serif
 }
 
 body {
@@ -17,14 +20,16 @@ body {
 .main {
     height: 92vh;
     display: flex;
-    place-content: center;
+    justify-content: space-around;
+    /* place-content: center; */
 }
 
 .container {
+    max-width: 48vw;
     background: #fff;
     display: flex;
     flex-direction: column;
-    place-content: center;
+    justify-content: flex-end;
     padding: 5px;
 }
 
