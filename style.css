@@ -80,12 +80,14 @@ body {
 }
 
 .container {
+    width:50%;
     max-width: 48vw;
     background: #fff;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 5px;
+    margin-top:3vh;
     overflow: hidden;
 }
 
