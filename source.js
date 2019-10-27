@@ -24,7 +24,7 @@ window.onload = () => {
 
     //for animation
     var timer = 0; //for animations
-    var animationTypes = ["SlideIn", "SlideOut"];
+    var animationTypes = ["fadeIn", "fadeOut"];
 
     /**
      * Panel Functions
@@ -64,14 +64,14 @@ window.onload = () => {
         let titleWrapper = document.querySelector(`.title-${side}`);
 
         //slideOut animation
-        if (timer > 10) setAnimation(titleWrapper, animationTypes[1], side);
+        if (timer > 10) setAnimation(titleWrapper, animationTypes[1]);
 
         setTimeout(() => {
             //replace the contents with the description
             titleWrapper.innerHTML = `<h1>${data[index].title}</h1>`;
 
             //slideIn animation
-            setAnimation(titleWrapper, animationTypes[0], side);
+            setAnimation(titleWrapper, animationTypes[0]);
         }, timer);
     }
     var setDescription = (index, side) => {
@@ -89,15 +89,15 @@ window.onload = () => {
             setAnimation(descriptionWrapper, animationTypes[0], side);
         }, timer);
     }
-    var setAnimation = (element, animation, side) => {
+    var setAnimation = (element, animation) => {
             //remove all animation classes
             animationTypes.forEach((name) => {
-                element.classList.remove(`${side+name}`);
+                element.classList.remove(`${name}`);
             });
 
             setTimeout(() => {
                 element.offsetWidth = element.offsetWidth; //weird workaround to reset animation count
-                element.classList.add(`${side+animation}`);
+                element.classList.add(`${animation}`);
             }, 0);
         }
         /**
@@ -192,7 +192,7 @@ window.onload = () => {
         //set html elements according to what was picked
         setPanel(picks.left.id, "left");
         setPanel(picks.right.id, "right");
-        timer = 1024; //set animation timer after first generate call
+        timer = 250; //set animation timer after first generate call
 
         //reset picks for next, unless overridden by params
         if (!checkPanel1()) {
